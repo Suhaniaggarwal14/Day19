@@ -1,0 +1,1264 @@
+                WinRAR - Was neu ist in dieser Version
+
+
+   Version 7.01
+
+   1. Behobene Fehler:
+
+      a) Das Erneuern einer verschlüsselten Datei in einem soliden
+         RAR-Archiv führte zu einem beschädigten Archiv, wenn die zu
+         erneuernde Datei die erste Datei im Archiv war, ein Passwort
+         beim Start des Erneuerungsvorgangs nicht angegeben wurde
+         und die Option "Dateinamen verschlüsseln" für das zu
+         erneuernde Archiv nicht aktiviert war.
+
+      b) WinRAR 7.00 stürzte nach dem Wechseln zum Ansichtsmodus
+         "Gesamtsicht" ab, wenn in der Dateiliste von WinRAR gerade
+         ein Unterverzeichnis eines Archivs angezeigt wurde.
+
+      c) Der Schalter -ep4 verdoppelte beim Entpacken den angegebenen
+         Pfad anstatt ihn zu entfernen.
+
+      d) Wenn ein mit einer RAR-Version für Unix erstelltes RAR-Archiv
+         symbolische Links mit Pfadtrennzeichen in den Zielpfaden
+         enthielt, konnte es passieren, dass diese Pfadtrennzeichen
+         kaputt gingen, wenn das Archiv mit einer RAR-Version unter
+         Windows geändert wurde.
+
+      e) In den WinRAR-Fehlermeldungen beim Umbenennen von Dateien
+         und beim Ausführen von Dateien wurde ein falscher Dateiname
+         angezeigt.
+
+      f) Der SFX-Befehl "Shortcut" erkannte leere Parameter nicht, die
+         als doppelte Anführungsstriche angegeben wurden (wie z.B.
+         "Shortcut=D,"",verzeichnis"). Leere Parameter ohne
+         Anführungsstriche wurden jedoch korrekt erkannt (wie z.B.
+         "Shortcut=D,,verzeichnis").
+
+      g) Die Wiederherstellung von Volumen bei einem gesplitteten
+         Archiv funktionierte mit WinRAR.exe nicht, wenn beim
+         Befehl "rc" als Parameter eine .rev-Datei angegeben wurde,
+         wie zum Beispiel "WinRAR rc archiv.part1.rev". Im Gegensatz
+         zu RAR war bei WinRAR bei diesem Befehl nur die Angabe
+         einer .rar-Datei möglich.
+
+
+   Version 7.00
+
+   1. Beim RAR-Archivformat werden bei der Komprimierung Wörterbücher
+      mit einer Größe von mehr als 1 GB unterstützt. Abhängig von der
+      Größe des physisch verfügbaren Hauptspeichers können Wörterbücher
+      bis zu einer Größe von 64 GB ausgewählt werden.
+
+      Bei Wörterbüchern größer als 4 GB muss der Größenwert keine
+      Zweierpotenz 4, 8, 16, 32 oder 64 mehr sein. Es können Werte wie
+      5 GB oder 22 GB verwendet werden.
+
+      Archive mit Wörterbüchern größer als 4 GB können nur mit WinRAR 7.0
+      oder neuer entpackt werden. Zum Entpacken von Archiven mit
+      Wörterbüchern größer als 1 GB ist eine 64-Bit-Version von WinRAR
+      erforderlich.
+
+      Eine Vergrößerung des Wörterbuchs kann die Komprimierungsrate
+      von großen Dateien mit weit auseinanderliegenden, sich
+      wiederholenden Datenblöcken verbessern, wie z. B. bei
+      Festplattenabbildern virtueller Maschinen. Ein größeres Wörterbuch
+      kann sich auch bei einem soliden Archiv mit einer Menge ähnlicher
+      Dateien positiv auf die Komprimierungsrate auswirken, wie z. B.
+      bei einer Sammlung von ISO-Images einer Software, die sich in
+      ihrer Version oder Lokalisierung unterscheiden.
+
+   2. Überschreitet die Größe des Wörterbuchs im zu entpackenden
+      RAR-Archiv die im Feld "Maximal erlaubte Wörterbuchgröße beim
+      Entpacken" im Dialog "Einstellungen - Komprimierung", zeigt WinRAR
+      ein Dialog an, der den Benutzer auffordert zu entscheiden, ob die
+      Datei entpackt oder die Verarbeitung abgebrochen werden soll.
+      Damit wird verhindert, dass eine große Speichermenge unerwartet
+      angefordert und belegt wird.
+
+      In der Befehlszeile verweigert WinRAR standardmäßig das Entpacken
+      von Archiven mit einem Wörterbuch größer als 4 GB. Verwenden Sie
+      den Schalter -md<Größe> oder -mdx<Größe>, um das Entpacken von
+      Archiven mit Wörterbuchgrößen kleiner oder gleich der angegebenen
+      Größe zu erlauben.
+      Im Gegensatz zum Schalter -md<Größe> wird der Schalter -mdx<Größe>
+      nur beim Entpacken angewandt und kann zur RAR-Umgebungsvariable
+      hinzugefügt werden, ohne sich auf die Archivierungsbefehle
+      auszuwirken.
+
+   3. Im Dialog "Wörterbuchgrößen festlegen" können die Wörterbuchgrößen
+      ausgewählt werden, die in der Dropdown-Liste des Feldes
+      "Wörterbuchgröße" im Dialog "Archivname und Archivparameter
+      einstellen: Allgemein" zur Auswahl stehen.
+
+   4. Bei Erstellen von RAR-Archiven kann ein alternativer Suchalgorithmus
+      verwendet werden, der zum effizienten Auffinden längerer und
+      weit auseinanderliegender sich wiederholender Datenblöcke
+      optimiert ist. Das kann dazu beitragen, die Komprimierungsrate und
+      manchmal auch die Komprimierungsgeschwindigkeit für redundante
+      Daten, wie z. B. große Textdateien, zu verbessern. 
+
+      Dieser Algorithmus erhöht den Speicherbedarf beim Archivieren
+      und kann die Komprimierungsgeschwindigkeit bei manchen Arten von
+      Daten verringern. Der Algorithmus lässt sich mit den Optionen
+      unter "Weitreichende Suche" im Dialog "Erweiterte Komprimierungs-
+      parameter" oder mit dem Schalter -mcl[+|-] an- und ausschalten.
+      Ist die Option "Automatisch" ausgewählt, verwendet WinRAR die
+      weitreichende Suche in Abhängigkeit von der Komprimierungsmethode,
+      der Wörterbuchgröße und anderen Parametern.
+
+      Für Wörterbücher mit einer Größe von mehr als 4 GB ist dieser
+      Algorithmus erforderlich und wird automatisch aktiviert. Das
+      Ausschalten des Algorithmus wird bei solchen Wörterbuchgrößen
+      ignoriert.
+
+   5. Ein viel langsamerer und erschöpfender Algorithmus für die Suche
+      nach sich wiederholender Daten und für die Komprimierung
+      kann mit der Option "Erschöpfende Suche" im Dialog "Erweiterte
+      Komprimierungsparameter" oder mit dem Schalter -mcx aktiviert
+      werden. Bei einigen Arten redundanter Daten kann das die
+      Komprimierungsrate weiter verbessern, allerdings auf Kosten der
+      Geschwindigkeit. Die Daten werden mit einer wesentlich geringeren
+      Geschwindigkeit komprimiert.
+
+      Die weitreichende Suche ist für die Effizienz der erschöpfenden
+      Suche erforderlich. Daher aktiviert die erschöpfende Suche
+      automatisch auch die weitreichende Suche.
+
+      Die Optionen der weitreichenden Suche und erschöpfenden Suche
+      haben keinen Einfluss auf die Kompatibilität der erstellten
+      Archive. Alle Archive mit einer Wörterbuchgröße zwischen 128 KB
+      und 4 GB, die mit diesen Suchoptionen erstellt wurden, können
+      von allen WinRAR-Versionen ab 5.0 entpackt werden.
+
+   6. Die maximale Pfadlänge wurde von 2047 auf 65535 Zeichen erhöht.
+
+   7. Das Erstellen von Archiven im RAR-4.x-Format wird nicht mehr
+      unterstützt. Die nur für dieses Format existierenden Optionen
+      und Schalter für die Archiverstellung wurden entfernt.
+      Das Entpacken von RAR-4.x-Archiven hingegen ist mit WinRAR
+      weiterhin möglich.
+
+   8. Die Option "Mark of the Web beim Entpacken weitergeben" im Dialog
+      "Einstellungen - Sicherheit" steuert die Weitergabe der "Mark of
+      the Web"-Markierung eines Archivs an die entpackten Dateien. Es
+      ist möglich, die Weitergabe zu unterbinden, für mehrere
+      vordefinierte Dateigruppen, für alle Dateien oder für Dateien, die
+      benutzerdefinierten Dateimasken entsprechen, zu erlauben.
+
+      Das sogenannten "Mark of the Web" ist die Information über die
+      Sicherheitszone einer Datei, die von Internet-Browsern bei
+      heruntergeladen Dateien ergänzt wird. Verschiedene Software kann
+      diese Information für Sicherheitszwecke verwenden.
+
+      Die Option wird nur von WinRAR, die Windowsversion von RAR mit der
+      grafischen Benutzeroberfläche, unterstützt. Die Konsolenversion
+      von RAR gibt die "Mark of the Web"-Markierung nicht weiter, die
+      Option wird ignoriert.
+
+   9. Die Spalte "Attribute" kann im Auswahldialog, der beim Klick auf
+      die Schaltfläche "Spalten..." im Dialog "Einstellungen - Dateiliste"
+      erscheint, für die Dateiliste ein- und ausgeblendet werden. In
+      der Spalte werden Abkürzungen für Dateiattribute angezeigt,
+      z. B. 'A' für "Archiv" und 'D' für Verzeichnis.
+
+      Wenn ein Dateiattribut nicht zu den Attributen gehört, die
+      WinRAR kennt, wird auch der numerische Wert der Dateiattribute
+      angezeigt. Der numerische Wert von Windows-Attributen wird im
+      Hexadezimalformat, der von Unix-Attributen im Oktalformat
+      ausgegeben.
+
+  10. Beim Befehl "Benchmark" kann die genaue Anzahl von Threads
+      angegeben werden, die für den Benchmark verwendet werden sollen.
+      Darüber hinaus besteht die Möglichkeit, die Ergebnisse des
+      Benchmarks in die Zwischenablage zu kopieren. Informationen über
+      die WinRAR-Version, Windows-Version, CPU und den Arbeitsspeicher
+      werden im Benchmark-Dialog angezeigt.
+
+  11. Die Option "Überflüssigen Verzeichnisnamen am Ende des
+      Zielverzeichnispfads entfernen" im Dialog "Einstellungen -
+      Verzeichnisse" wird nun auch bei Befehlen zum Entpacken angewendet,
+      die von der grafischen Benutzeroberfläche von WinRAR aus aufgerufen
+      werden. Darüber hinaus wird die Option auch angewandt, wenn mehrere
+      Archive in eigene Verzeichnisse entpackt werden.
+      Wenn es im Wurzelverzeichnis eines Archivs keine Dateien und nur
+      ein Verzeichnis gibt und der Name des archivierten Verzeichnisses
+      mit dem Archivnamen übereinstimmt, entfernt diese Option diesen
+      letzten Teil des Zielverzeichnispfads.
+
+      Enthält zum Beispiel das Archiv Bilder.rar das archivierte
+      Verzeichnis "Bilder" im Archiv-Wurzelverzeichnis und entpackt man
+      das Archiv nach "Bilder\", wird eines der "Bilder" aus dem
+      Zielverzeichnispfad entfernt.
+
+      In vorherigen Versionen funktionierte das nur für ein einzelnes
+      Archiv, wenn es mit Hilfe des Kontextmenüs im Windows Explorers
+      entpackt wurde. Es wurde auch nicht geprüft, ob der Name des
+      archivierten Verzeichnisses mit dem letzten Teil des
+      Zielverzeichnispfads übereinstimmte.
+
+  12. Die Option "Zeilenumbruch im Kommentar" in der Optionsgruppe
+      "Oberfläche" des Dialogs "Einstellungen - Allgemein" schaltet den
+      automatischen Zeilenumbruch im Archivkommentarfenster an oder aus.
+
+  13. Im Dialog für die Anzeige von Archivinformationen wird die
+      Wörterbuchgröße nun auch bei .bz2-, .lz-, .tar.bz2-, .tar.gz-,
+      .tar.lz- und .tar.zst-Archiven angezeigt.
+
+  14. Der Schalter -ol- unterbindet das Archivieren und Entpacken von
+      symbolischen Links.
+
+  15. Die Schalter -sl<Größe>[Einheit] und -sm<Größe>[Einheit] erkennen
+      die Buchstaben [k|K|m|M|g|G|t|T] als Größeneinheiten für Kilobyte,
+      Tausende von Byte, Megabyte, Millionen von Bytes, Gigabyte,
+      Milliarden von Bytes, Terabyte, Billionen von Bytes. Ist der
+      Buchstabe 'b', 'B' oder nicht vorhanden, wird automatisch
+      Byte gewählt.
+
+      In vorherigen Versionen akzeptierten diese Schalter nur
+      Größen in Bytes.
+
+  16. Der SFX-Befehl TempMode akzeptiert den optionalen Parameter
+      @set:user, mit dem die Berechtigungen des erstellten temporären
+      Verzeichnisses geändert werden können, sodass nur der aktuelle
+      Benutzer darauf zugreifen kann. Dadurch wird verhindert, dass
+      ein lokaler Benutzer Dateien in einem temporären Verzeichnis
+      ersetzen kann, wenn das SFX-Archiv unter einem anderen Konto
+      gestartet wird.
+
+      Dieser TempMode kann auch mit der Option "Zugriff auf
+      Verzeichnis beschränken" im Dialog "Erweiterte SFX-Optionen:
+      Modi" aktiviert werden.
+
+      Es kann vorkommen, dass einige Installationsprogramme in einem
+      Verzeichnis, das mit dem Parameter @set:user erstellt wurde,
+      nicht starten.
+
+  17. Für NTFS-Hard-Link-Einträge (Harte Links) werden die
+      Dateiberechtigungen und alternative NTFS-Datenströme nicht
+      mehr im Archiv gespeichert. Sie werden nur für die Quelldatei
+      gespeichert, auf die diese Einträge verweisen. Durch diese
+      Änderung lässt sich die Archivgröße verringern, weil diese
+      Dateieigenschaften beim Entpacken automatisch auf die Kopien
+      der harten Links übertragen werden.
+
+  18. Tastaturkürzel, wie Strg+A, um alle Dateien auszuwählen, oder
+      Alt+E, um gefundene Archive zu entpacken, funktionieren im
+      Dialog "Suchergebnisse" jetzt bereits, während eine Suche noch
+      läuft. In vorherigen Versionen waren die Tastaturkürzel erst
+      nach Abschluss der Suche verfügbar.
+
+  19. Der Schalter -v<Größe>[Einheit] erkennt die Buchstaben 't'
+      und 'T' als Terabyte und Billionen von Bytes als
+      Größeneinheiten für die Volumengröße.
+
+  20. Es wird eine Warnung ausgegeben, wenn das Zeichen '-' am Anfang
+      eines Parameters fehlt, der im Feld "Weitere Schalter" in Reiter
+      "Optionen" in den WinRAR-Dialogen zum Archivieren und Entpacken
+      angegeben ist. Die Warnung wird auch für Parameter mit
+      fehlendem '-'-Zeichen in der RAR-Umgebungsvariablen und der
+      Datei rar.ini angezeigt.
+
+      In vorherigen Versionen wurden solche fehlerhaften Parameter
+      stillschweigend ignoriert.
+
+  21. Bei der Ausführung des Befehls "Archive konvertieren" wird der
+      Gesamtfortschritt des Vorgangs gleichmäßig angezeigt. Bisher
+      wurde der Gesamtfortschritt nur bei der Verarbeitung mehrerer
+      Archive angezeigt und erst nach der Konvertierung eines
+      Archivs aktualisiert, was zu abrupten Sprüngen in der
+      Fortschrittsanzeige führte.
+
+  22. Beim Komprimieren von symbolischen Linkzielen wird der
+      Fortschritt nun korrekt angezeigt.
+
+  23. Die Option "WinRAR in den Explorer integrieren" im Dialog
+      "Einstellungen - Integration" ist ausgegraut, wenn die Zeile
+      "Global\Integration=0" in der Datei winrar.ini vorhanden ist.
+
+  24. Die 64-Bit-Version von WinRAR verwendet standardmäßig
+      64-Bit-SFX-Module. 64-Bit-SFX-Module werden zum Entpacken von
+      Archiven mit Wörterbüchern größer als 1 GB benötigt.
+
+      Die 32-Bit-SFX-Module wurden in Default32.SFX, Zip32.SFX,
+      WinCon32.SFX umbenannt.
+
+  25. Die maximal zulässige Wörterbuchgröße für die Archivierung und
+      das Entpacken kann in den Variablen MaxDictA und MaxDictE im
+      Registrierungsschlüssel "HKEY_CURRENT_USER\Software\WinRAR\Policy"
+      in Gigabyte angegeben werden. Sind die Werte dieser Variablen
+      kleiner als die entsprechenden Werte in der Benutzeroberfläche
+      von WinRAR, überschreiben sie die Werte in der Benutzeroberfläche.
+
+  26. Die Konsolenversion von RAR filtert das Zeichen mit dem Code 27
+      (das Steuerzeichen Escape) aus der Bildschirmausgabe heraus.
+      Dies geschieht aus Sicherheitsgründen, da dieses Zeichen in
+      einigen Terminalanwendungen zur Definition von ANSI-Escape-
+      Kontrollsequenzen verwendet werden kann.
+
+      Wir danken Siddharth Dushantha dafür, dass er uns auf dieses
+      Problem aufmerksam gemacht hat.
+
+  27. Behobene Fehler:
+
+      a) Es war möglich, die vom Archiv an die entpackten Dateien
+         weitergegebene "Mark of the Web"-Markierung zu überschreiben
+         und dessen Sicherheitzonen-Informationen mit Hilfe eines
+         speziell dafür angefertigten .rar-Archivs zu ändern.
+
+         Wir danken Orange Tsai und NiNi aus dem DEVCORE Research Team
+         in Zusammenarbeit mit der Trend Micro Zero Day Initiative,
+         dass sie uns auf dieses Sicherheitsproblem aufmerksam gemacht
+         haben.
+
+         Im Gegensatz zu WinRAR gibt die Bibliothek unrar.dll die
+         "Mark of the Web"-Markierung eines Archivs nicht weiter
+         und überlässt es der aufrufenden Anwendung, die "Mark of
+         the Web"-Markierung den entpackten Dateien zuzuweisen.
+         Daher ist unrar.dll nicht von diesem Problem betroffen.
+
+      b) Das Feld "Benutzerdefinierte Archiv-Erweiterungen" im Dialog
+         "Einstellungen - Integration" wurde nicht gespeichert, wenn
+         die Datei winrar.ini zum Speichern von Einstellungen verwendet
+         wurde und WinRAR unter einem Nicht-Administrator-Benutzerkonto
+         gestartet wurde.
+
+
+   Version 6.24
+
+   1. Behobene Fehler:
+
+      a) WinRAR und UnRAR.dll stürzten beim Ausführen des Befehls zum
+         Entpacken von Archiven ab, wenn in den mit dem Schalter -am
+         gespeicherten Archiv-Metadaten ein Archivname mit Länge Null
+         vorhanden war. Die technische Ursache für den Absturz war
+         die Dereferenzierung eines Nullpointers.
+
+         Wir danken Radoslaw Madej von Check Point Software, dass er
+         diesen Fehler gemeldet hat.
+   
+      b) WinRAR und UnRAR.dll überschrieben beim Ausführen des Befehls
+         zum Entpacken von Archiven die entpackten Dateidaten mit dem
+         Inhalt des alternativen NTFS-Datenstroms ::$DATA, wenn dieser
+         Datenstrom im Archiv vorhanden war. In diesem Fall konnte es
+         passieren, dass die Größe und die Prüfsumme der entpackten
+         Daten nicht mit der angezeigten ungepackten Größe und der
+         Prüfsumme in der WinRAR-Dateiliste übereinstimmten.
+         Dieser Fehler hatte keine Auswirkungen auf den Dateinamen und
+         den Dateityp, beides wurde korrekt angezeigt.
+
+         Wir danken Ata Hakcil, dass er diesen Fehler gemeldet hat.
+
+
+   Version 6.23
+
+   1. Das Entpacken von XZ-Archiven, die den ARM64-Filter verwenden,
+      wurde hinzugefügt.
+
+   2. Die beim Entpacken oder Testen mehrerer Archive bei der Verwendung
+      des Windows-Kontextmenüs erstellten temporären Dateien Rar$LS*
+      werden nun sofort gelöscht. Bisher wurden sie erst bei den
+      nachfolgenden Ausführungen von WinRAR gelöscht, wenn sie mindestens
+      eine Stunde alt waren.
+
+   3. Behobene Fehler:
+
+      a) Ein Sicherheitsproblem im Code zur Verarbeitung von RAR4-
+         Wiederherstellungsvolumen, das einen Out-of-Bounds-Write
+         zur Folge hatte, wurde behoben.
+
+         Wir danken goodbyeselene in Zusammenarbeit mit der Trend Micro
+         Zero Day Initiative, dass er uns auf diesen Fehler aufmerksam
+         gemacht hat.
+
+      b) WinRAR konnte eine falsche Datei starten, nachdem ein Benutzer
+         auf ein Element in einem speziell erstellten Archiv doppelt
+         geklickt hatte.
+
+         Wir danken Andrey Polovinkin von der Group-IB Threat
+         Intelligence Unit, dass er uns auf diesen Fehler aufmerksam
+         gemacht hat.
+
+      c) Wenn für eine Datei in einem ZIP-Archiv sowohl das zusätzliche
+         Feld mit den NTFS-Dateizeiten als auch das zusätzliche Feld mit
+         den Unix-Dateizeiten vorhanden waren, ignorierte der Befehl
+         zum Entpacken das zweite zusätzliche Feld, selbst wenn es mehr
+         Zeitangaben als das erste enthielt.
+
+      d) Benutzeroberflächenthemen wurden auch dann auf Archiv-Symbole
+         angewendet, wenn die Option "Auf Archiv-Symbole anwenden" im
+         Dialog "Themen verwalten" deaktiviert war.
+
+
+   Version 6.22
+
+   1. Behobene Fehler:
+
+      a) Das Entpacken einzelner Dateien aus soliden Archiven, die mit
+         RAR-Versionen älter als Version 2.0 erstellt wurden, konnte in
+         WinRAR 6.20 und 6.21 fehlschlagen. Dieser Fehler betraf nicht
+         das Entpacken des gesamten Archivs, was korrekt ausgeführt wurde.
+
+      b) Dateien in Unix-ARJ-Archiven konnten fälschlicherweise als
+         Ordner in der WinRAR-Dateiliste angezeigt werden.
+
+      c) Beim Entpacken wurde die Option "Dateien im Explorer anzeigen"
+         ignoriert, wenn die Option "Nach dem Entpacken: WinRAR schließen"
+         aktiviert und das Archiv vor dem Entpacken in WinRAR geöffnet
+         war.
+
+      d) Der Wert für die Dateigröße in der Statusleiste des internen
+         Betrachters berücksichtigte bei Unicode-Dateien nicht die Größe
+         des Byte Order Marks (BOM). Dadurch wurde für die Dateigröße ein
+         Wert kleiner als die wirkliche Größe angezeigt.
+
+
+   Version 6.21
+
+   1. Beim Entpacken von TAR- und TAR-basierten Archiven wie tar.gz und
+      tar.bz2 wird nun die Zeit der letzten Änderung sowohl bei Dateien
+      als auch bei Verzeichnissen wiederhergestellt. Bisher wurde bei
+      diesen Archivformaten nur bei Dateien die Zeit der letzten
+      Änderung gesetzt.
+
+   2. Das Entpacken von .tar.zst-Archiven mit einem Wörterbuch größer
+      als 128 MB ist nun möglich. WinRAR 6.20 erlaubte ein Wörterbuch
+      dieser Größe nur für .zst-, nicht jedoch für .tar.zst-Archive.
+
+   3. Die Schalter -ed und -e+d werden nun ebenfalls bei ZIP-Archiven
+      unterstützt. Bisher funktionierten sie nur bei RAR-Archiven.
+
+   4. Behobene Fehler:
+
+      a) Wenn eine unverschlüsselte Datei nach einer verschlüsselten
+         Datei im selben RAR-Archiv gespeichert war und beide Dateien
+         in einem Entpackvorgang mit demselben Befehl entpackt werden
+         sollten, konnte WinRAR 6.20 die unverschlüsselte Datei nicht
+         entpacken.
+
+      b) Manchmal konnte es passieren, dass nach einem Fehler beim
+         Öffnen einer Datei in der zweiten Zeile der Fehlermeldung
+         ein ausführlicher Grund für den Datei-Öffnungsfehler
+         angezeigt wurde.
+
+
+   Version 6.20
+
+   1. Ist die Option "Passwörter automatisch erkennen" im Dialog
+      "Passwörter verwalten" aktiviert, und eines der gespeicherten
+      Passwörter passt zu dem gerade verarbeiteten Archiv, wird es
+      automatisch angewendet. Diese Option ist nur für Archive im
+      RAR-5.0-Format und ZIP-Format anwendbar, da bei diesen Formaten
+      eine schnelle Überprüfung der Gültigkeit von Passwörtern
+      möglich ist.
+
+      Es besteht eine geringe Wahrscheinlichkeit, dass das Passwort für
+      ZIP-Archive nicht korrekt erkannt wird, wenn die gespeicherten
+      Passwörter kein richtiges enthalten. Wenn das Entpacken eines
+      verschlüsselten ZIP-Archivs fehlschlägt, können Sie versuchen,
+      diese Option zu deaktivieren, das Entpacken zu wiederholen und
+      ein gültiges Passwort manuell einzugeben.
+
+   2. Wenn ein Befehl zum Entpacken nur einen Teil der Dateien in
+      einem RAR-Archiv betrifft, wird die zusätzliche Archivanalyse
+      beim Start des Entpackvorgangs durchgeführt. Die Analyse hilft,
+      Dateiverweise richtig zu entpacken, auch wenn die Quelle des
+      Verweises nicht ausgewählt ist. Dies funktioniert bei den
+      meisten RAR-Archiven, Ausnahmen sind Archive mit auf
+      mehreren Wechseldatenträgern gespeicherten Volumen und
+      Archive mit einer großen Anzahl von Verweisen.
+
+      In einigen Fällen kann eine solche Analyse auch dazu beitragen,
+      die Datenmenge beim Entpacken einzelner Dateien aus
+      teilweise soliden Archiven zu optimieren, die mit den Schaltern
+      -s<N> und -se erstellt wurden.
+
+   3. Die Option "Original-Archivname und -zeit speichern" auf der Seite
+      Optionen des Dialogs "Archivname und Archivparameter einstellen"
+      ermöglicht die Speicherung des aktuellen Archivnamens und der
+      aktuelle Erstellzeit des Archivs als Original-Name und Original-
+      Zeit im Archiv. Wenn das Archiv einen solchen gespeicherten Namen
+      und eine solche Zeit enthält, werden sie auf der Seite "Info"
+      beim Befehl "Informationen anzeigen" angezeigt. Auf der Seite
+      "Optionen" desselben Befehls können sie wiederhergestellt werden.
+      Bei der Wiederherstellung wird das Archiv in den Original-Namen
+      umbenannt und sowohl die Erstellzeit als auch die Änderungszeit
+      des Archivs auf die gespeicherte Original-Zeit gesetzt.
+
+      In der Befehlszeile kann man mit dem Schalter -ams oder nur -am
+      zusammen mit einem Befehl zur Archivänderung den Archivnamen und
+      die Archivzeit speichern. Diese gespeicherten Metadaten werden
+      im Header der Ausgabe der Befehle 'l' und 'v' angezeigt und
+      können mit dem Schalter -amr zusammen mit dem Befehl "ch"
+      wiederhergestellt werden, zum Beispiel "rar ch -amr arc.rar".
+      Ist der Schalter -amr angegeben, ignoriert der Befehl "ch"
+      alle weiteren Schalter zur Archivänderung.
+
+   4. Schnellere RAR5-Komprimierung von schlecht komprimierbaren Daten
+      auf modernen CPUs mit 8 oder mehr Threads. Dies gilt für alle
+      Komprimierungsmethoden außer "Schnellste", bei der die
+      Geschwindigkeit gleichgeblieben ist.
+
+   5. Die Effizienz des Befehls "Archiv reparieren" wurde für vertauschte
+      Datenblöcke in mit Wiederherstellungsdaten geschützten
+      RAR5-Archiven verbessert.
+
+   6. Wenn die Größe einer Datei nach der Archivierung beim Erstellen von
+      nicht-soliden RAR-Volumen zugenommen hat, wird diese Datei ohne
+      Komprimierung gespeichert. Dies funktioniert nun unabhängig von
+      der Volumen-Nummer, vorausgesetzt, die Datei ist nicht auf mehrere
+      Volumen aufgeteilt. In vorherigen Versionen funktionierte das nur
+      für Dateien im ersten Volumen.
+
+   7. Das Entpacken von .zipx-Archiven, die Dateiverweise enthalten,
+      wurde hinzugefügt. Das funktioniert jedoch nur, wenn sowohl die
+      Quelle des Verweises als auch das Ziel des Verweises ausgewählt
+      sind und die Quelle des Verweises innerhalb des Archivs vor dem
+      Ziel steht.
+
+      Wenn ein .zipx-Archiv Dateiverweise enthält, ist es in der Regel
+      notwendig das gesamte Archiv zu entpacken, um die Verweise
+      erfolgreich zu entpacken.
+
+   8. Das Entpacken von .zst-Archiven mit großem Suchfenster (Long
+      Range mode) mit Wörterbüchern größer als 128 MB wurde hinzugefügt.
+      Zuvor war es nur möglich, .zst-Archive mit einer Wörterbuchgröße
+      von 128 MB oder weniger zu entpacken.
+
+   9. Ist eine der Optionen "Herunterfahren", "Ruhezustand", "Energie
+      sparen" oder "Neu starten" im WinRAR-Archivierungsdialog aktiviert,
+      zeigt WinRAR einen Dialog zum Bestätigen oder Abbrechen einer
+      solchen Energieverwaltungsaktion an, unmittelbar bevor diese
+      gestartet wird. Wenn der Anwender innerhalb von 30 Sekunden
+      keine Auswahl trifft, wird die vorgeschlagene Aktion bestätigt
+      und automatisch gestartet.
+
+      Diese Aufforderung wird auch angezeigt, wenn der Schalter -ioff
+      in der WinRAR-Befehlszeile verwendet wird, nicht jedoch, wenn er
+      in der RAR-Befehlszeile verwendet wird.
+
+  10. Im Kontextmenü der WinRAR-Dateiliste steht bei Archiven der Befehl
+      "Im internen Betrachter öffnen" zur Verfügung. Der Befehl kann
+      hilfreich sein, wenn man die Rohdaten eines Archivs im internen
+      Betrachter anschauen möchte. Zum Beispiel um ein E-Mailarchiv
+      mit darin enthaltenen UUE-Anhängen zu lesen.
+
+      Normalerweise zeigt der Befehl "Datei anzeigen" immer den Inhalt
+      eines Archivs an. Wenn eine Datei als UUE-Archiv erkannt wird,
+      zeigt der Befehl "Datei anzeigen" die UUE-Anhänge an.
+
+  11. Die Größe der Wiederherstellungsinformationen wird auf der Seite
+      "Archiv" des Eigenschaften-Dialogs angezeigt, wenn man im
+      Kontextmenü des Windows Explorers den Eintrag "Eigenschaften" bei
+      einem Archiv im RAR5-Format aufruft. Bisher wurde nur die
+      Zeichenkette "Vorhanden" statt der genauen Größe angezeigt.
+
+  12. Bei der Archivierung von stdin mit dem Schalter -si zeigt RAR die
+      aktuelle Anzahl der gelesenen Bytes als Fortschrittsanzeige an.
+
+  13. Wird beim Hinzufügen von Dateien zu einem verschlüsselten soliden
+      RAR5-Archiv ein falsches Passwort angegeben, wird es nun erneut
+      abgefragt. In vorherigen Versionen wurde in diesem Fall die
+      Archivierung abgebrochen.
+
+  14. Sind beim Archivieren die beiden Optionen "Teste archivierte
+      Dateien" und "Archivattribut nach dem Archivieren löschen"
+      aktiviert oder wurden die entsprechenden Schalter -t -ac in der
+      Befehlszeile angegeben, wird das Archivattribut einer Datei
+      nur dann gelöscht, wenn der Test der archivierten Datei
+      erfolgreich abgeschlossen wurde. Bisher wurde es auch dann
+      gelöscht, wenn der Test einer archivierten Datei fehlschlug.
+
+  15. Der Wert NoDrives, der die Bitmaske zum Ausblenden von Laufwerken
+      enthält, kann nun aus dem Registrierungsschlüssel
+      "HKEY_CURRENT_USER\Software\WinRAR\Policy" gelesen werden. Damit
+      ist es nun möglich, den Wert NoDrives gegebenenfalls in die
+      winrar.ini aufzunehmen. Die Speicherorte in der Registry im Pfad
+      "Software\Microsoft\Windows\CurrentVersion\Policies" in den
+      Zweigen HKEY_CURRENT_USER und HKEY_LOCAL_MACHINE werden ebenfalls
+      unterstützt.
+
+      Bisher wurde nur "Software\Microsoft\Windows\CurrentVersion\Policies"
+      im Zweig HKEY_CURRENT_USER erkannt.
+
+  16. Behobene Fehler:
+
+      a) Befehle für die Änderung eines Archivs konnten bei einigen
+         ZIP-Archiven, die Dateikommentare enthalten, fehlschlagen.
+
+      b) Ein Speicherleck beim Lesen des Inhalts von .tar.bz2-Archiven
+         wurde behoben.
+
+      c) Sind das Quellformat und das Zielformat gleich, setzte der
+         Befehl "Archive konvertieren" die Zeit bei einem neu
+         erstellten Archiv nicht auf die Zeit des ursprünglichen
+         Archivs, selbst wenn die Option "Archivzeit setzen auf
+         ursprüngliche Archivzeit" im Dialog "Archivname und
+         Archivparameter einstellen - Zeit" oder
+         "Standardkomprimierungseinstellungen - Zeit" ausgewählt war.
+
+      d) Wenn die Option "Volumeninhalte zusammenfügen" im Dialog
+         "Einstellungen - Dateiliste" aktiviert war, konnte die
+         gepackte Größe von Ordnern in der WinRAR-Dateiliste beim
+         Anzeigen des Inhalts eines gesplitteten Archivs geringer sein
+         als erwartet. Die gepackte Größe des Teils einer Datei, die
+         von einem vorherigen Volumen stammt, wurde nicht in die
+         Berechnung einbezogen.
+
+      e) Selbst wenn die Option "Dateisicherheitsdaten setzen"
+         standardmäßig deaktiviert war, versuchten die Befehle zum
+         Entpacken im Windows-Explorer-Kontextmenü weiterhin, die
+         NTFS-Dateisicherheitsdaten wiederherzustellen.
+
+      f) WinRAR konnte Daten über das Ende des Puffers hinaus lesen
+         und beim Entpacken von Dateien aus speziell präparierten
+         ZIP-Archiven abstürzen. Wir danken Bakker, der mit der Trend
+         Micro Zero Day Initiative zusammengearbeitet hat und uns
+         so über diesen Fehler informiert hat.
+
+
+   Version 6.11
+
+   1. Unterstützung für gz-Archive mit großen Archivkommentaren wurde
+      hinzugefügt. In vorherigen Versionen konnten gz-Archive mit einer
+      Kommentargröße von mehr als 16 KB nicht entpackt werden.
+
+   2. Archivkommentare in gz-Archiven werden nun im Kommentarfenster
+      angezeigt und werden beim Befehl "Informationen anzeigen" erkannt.
+      Von großen Kommentaren wird nur der erste Teil angezeigt.
+
+      In vorherigen Versionen wurden keine Gzip-Kommentare angezeigt.
+
+   3. Unter Windows 11 werden Dateien und Ordner mit Namen, die aus einem
+      reservierten Gerätenamen und einer Dateierweiterung bestehen, wie
+      zum Beispiel aux.txt, ganz normal entpackt, ohne dass die Option
+      "Potenziell nicht kompatible Namen zulassen" aktiviert oder der
+      Befehlszeilen-Schalter -oni angegeben werden muss. Im Gegensatz
+      zu früheren Windows-Versionen behandelt Windows 11 solche Namen
+      wie normale Dateien.
+
+      Um Dateien und Ordner mit Namen zu entpacken, die nur aus einem
+      reservierten Gerätenamen ohne Erweiterung bestehen, wie zum
+      Beispiel aux, ist unabhängig von der Windows-Version weiterhin
+      nur mit der Option oder dem Schalter möglich.
+
+   4. Der Schalter -mes kann nun auch beim Hinzufügen von Dateien zu
+      einem verschlüsselten soliden Archiv verwendet werden, um die
+      Passwortabfrage zu unterdrücken und den Vorgang abzubrechen.
+
+   5. Zusätzliche Maßnahmen wurden implementiert, die das Entpacken von
+      unsicheren Links verhindern.
+
+   6. Behobene Fehler:
+
+      a) Wurde beim Entpacken eines verschlüsselten Archivs mit der
+         Konsolenversion von RAR ein Passwort mit einer Länge von mehr
+         als 127 Zeichen eingegeben, konnte es passieren, dass bei
+         weiteren späteren Aufforderungen zur Passwortangabe der Text
+         nach dem 127. Zeichen fälschlicherweise als Benutzereingabe
+         erkannt wurde.
+
+      b) Beim Extrahieren einer Datei aus einem ZIP-Archiv konnte es
+         passieren, dass im Dialog für die Rückfrage zum Überschreiben
+         der Datei die falsche Zeit der archivierten Datei angezeigt
+         wurde. Das war immer dann der Fall, wenn im Archiv die
+         Dateizeiten mit hoher Genauigkeit gespeichert und das Archiv
+         in einer anderen Zeitzone erstellt wurde. Die aktuelle
+         Dateizeit, die beim Entpacken der Datei gesetzt wurde, war
+         von dem Fehler nicht betroffen, sie wurde richtig gesetzt.
+
+
+   Version 6.10
+
+   1. WinRAR kann Inhalte von .zst- und .zipx-Archiven entpacken, die
+      mit dem Zstandard-Algorithmus gepackt sind.
+
+   2. Unterstützung für das Kontextmenü im Windows Explorer unter
+      Windows 11 wurde hinzugefügt.
+
+      Ab Windows 11 kann eine Anwendung dem Kontextmenü des Windows Explorers
+      auf oberster Ebene nur einen einzigen Menübefehl oder ein Untermenü
+      hinzufügen.
+
+      Ist die Option "Kontextmenüs kaskadieren" aktiviert, besteht dieser
+      einzelne Eintrag aus einem Untermenü, das alle erforderlichen
+      WinRAR-Befehle enthält.
+
+      Ist diese Option deaktiviert, steht bei Archiven nur ein Befehl zum
+      Entpacken und bei normalen Dateien nur ein Befehl zum Archivieren
+      zur Verfügung.
+      Diese Befehle können mit der Schaltfläche "Kontextmenü
+      konfigurieren..." im Dialog "Einstellungen - Integration" ausgewählt
+      werden.
+
+   3. Die Option "Alte Kontextmenüs" im Dialog "Einstellungen -
+      Integration" kann unter Windows 11 aktiviert werden, wenn
+      WinRAR-Befehle im alten Windows-Kontextmenü "Weitere Optionen
+      anzeigen" oder in den Kontextmenüs von anderen Anwendungen, wie
+      z.B. Dateimanagern, fehlen. Wenn die WinRAR-Befehle an den
+      genannten Stellen bereits vorhanden sind, sollte diese Option
+      nicht aktiviert werden, damit die WinRAR-Befehle nicht doppelt
+      angezeigt werden.
+
+      Diese Option ist unter Windows 10 und älteren Windowsversionen
+      nicht verfügbar.
+
+   4. Windows XP wird nicht mehr unterstützt. Die minimale Voraussetzung
+      für WinRAR ist Windows Vista.
+
+   5. Der Eintrag "WinRAR schließen" wurde zu der Liste "Nach dem
+      Archivieren" im Archivierungsdialog "Archivname und Archivparameter
+      einstellen - Erweitert" hinzugefügt. Damit wird das WinRAR-Fenster
+      nach dem Ende der Archivoperation geschlossen.
+
+   6. Der Eintrag "WinRAR schließen" wurde zu der Liste "Nach dem Entpacken"
+      im Dialog "Entpacken: Zielverzeichnis und Optionen - Optionen"
+      hinzugefügt. Die Option ermöglicht die Auswahl einer Aktion nach
+      dem Ende der Entpackoperation, wie den PC nach dem Entpacken
+      herunterzufahren oder das WinRAR-Fenster zu schließen.
+
+   7. Der Schalter -si kann beim Entpacken oder Testen verwendet werden,
+      um Archivdaten von der Standardeingabe (stdin) zu lesen. Beispiel:
+
+        type docs.rar | rar x -si -o+ -pmypwd dummy docs\
+
+      Obwohl der Archivname bei diesem Schalter ignoriert wird, muss ein
+      beliebiger Dummy-Archivname in der Befehlszeile angegeben werden.
+
+      Archivoperationen, die Rückwärtssuchvorgänge erfordern, sind in
+      diesem Modus nicht möglich. Dazu gehören die Anzeige von Archiv-
+      kommentaren, das Testen der Wiederherstellungsdaten, das Verwenden
+      der Informationen zum schnellen Öffnen von Archiven und das
+      Verarbeiten von mehrteiligen Archiven.
+
+      Eingabeaufforderungen, die den Eingriff des Benutzers erfordern,
+      sind nicht zulässig. Man kann die Schalter -o[+|-|r], -p<Pwt>
+      oder -mes verwenden, um solche Eingabeaufforderungen zu unterdrücken.
+
+   8. Der neue Schalter -ep4<Pfad> entfernt beim Archivieren oder
+      Entpacken den angegebene Pfadpräfix, wenn dieser Pfad am Anfang
+      eines archivierten Namens gefunden wird. Der Vergleich des Pfades
+      wird mit den für die Speicherung im Archiv vorbereiteten Namen,
+      bei denen die Laufwerksbuchstaben und Pfadtrennzeichen am Anfang
+      entfernt wurden, durchgeführt. Beispiel:
+
+        rar a -ep4texte\buecher archiv c:\texte\buecher\technisch
+
+      entfernt 'texte\buecher' aus den archivierten Namen, sodass sie
+      mit 'technisch' beginnen.
+
+   9. Der neue Schalter -mes überspringt verschlüsselte Dateien
+      beim Entpacken oder Testen. Er ersetzt den früheren Schalter -p-.
+
+  10. Der neue Schalter -op<Pfad> legt den Zielverzeichnispfad für
+      entpackte Dateien fest. Im Gegensatz zum Befehlszeilenparameter
+      <Zielverzeichnis\> akzeptiert dieser Schalter auch Pfade ohne
+      abschließendes Pfad-Trennzeichen.
+
+  11. Wird der Befehl 'p' verwendet, um eine Datei an die
+      Standardausgabe (stdout) zu senden, werden Informationsmeldungen
+      automatisch unterdrückt, damit sie sich nicht mit den Dateidaten
+      vermischen.
+
+  12. Bei der Option "Archivnamen aus folgender Maske erzeugen" und dem
+      Schalter -ag werden nur die ersten zwei 'M'-Zeichen nach 'H' als
+      Minuten behandelt. Zuvor wurde eine beliebige Anzahl von 'M' als
+      Minuten angesehen.
+
+      Damit ist es nun möglich, das Zeitfeld vor dem Datum anzuordnen,
+      beispielsweise -agHHMM-DDMMYY. Vorherige Versionen betrachteten
+      alle 'M' in dieser Zeichenkette als Minuten.
+
+  13. Die maximal zulässige Größe der RAR5-Wiederherstellungsdaten wurde
+      auf 1000% der geschützten Datengröße erhöht. Die maximale Anzahl
+      von RAR5-Wiederherstellungsvolumen kann 10-mal größer sein als
+      die Anzahl der geschützten RAR-Volumen.
+
+      Übersteigt die Größe der Wiederherstellungsdaten 99%, können
+      vorherige WinRAR-Versionen jedoch diese Wiederherstellungsdaten
+      nicht zur Reparatur defekter Archive verwenden. Ähnliches gilt
+      auch für Wiederherstellungsvolumen. Vorherige WinRAR-Versionen
+      können Wiederherstellungsvolumen nicht verwenden, wenn deren
+      Anzahl größer oder gleich der Anzahl der RAR-Volumen ist.
+
+  14. Es wird nun eine Warnung ausgegeben, wenn das eingegebene
+      Passwort die Maximallänge von 127 Zeichen überschreitet und
+      gekürzt wird. In vorherigen Versionen wurden solche Passwörter
+      stillschweigend gekürzt.
+
+  15. Enthält ein Archiv Namen, die mit reservierten Gerätenamen
+      übereinstimmen, wird beim Entpacken das Unterstrichzeichen am
+      Anfang solcher Namen eingefügt. Beispielsweise wird aux.txt zu
+      _aux.txt umgewandelt. Dadurch werden Kompatibilitätsprobleme mit
+      Software vermieden, die solche Namen nicht verarbeiten kann.
+
+      Mit der Option "Potenziell nicht kompatible Namen zulassen" im
+      Dialog "Entpacken: Zielverzeichnis und Optionen - Erweitert"
+      oder dem Befehlszeilenschalter -oni lässt sich diese Umwandlung
+      deaktivieren.
+
+  16. Vor dem Testen eines Archivs versucht WinRAR, den Dateicache
+      zurückzusetzen. Da kann helfen, die tatsächlich auf den
+      Datenträger geschriebenen Daten zu überprüfen, anstatt eine Kopie
+      aus dem Cache.
+
+  17. Die mehrfache Verwendung des Schalters -v<Größe>, womit
+      unterschiedliche Größen für verschiedene Volumen angeben werden
+      können, ist nun auch für ZIP-Archive erlaubt:
+
+      WinRAR a -v100k -v200k -v300k archivname.zip
+
+      Bisher war die mehrfache Verwendung des Schalters -v<Größe> nur
+      bei RAR-Archiven möglich.
+
+  18. Die Schalter -sl<Größe> und -sm<Größe> kann im Befehlszeilenmodus
+      von WinRAR beim Entpacken von Archiven aller unterstützten
+      Formate verwendet werden, sofern ein Archiv die unkomprimierten
+      Dateigrößen enthält. Bisher konnten diese Schalter nur in RAR- und
+      ZIP-Archiven Dateien nach ihrer Größe filtern.
+
+  19. Ein neuerer Ordnerauswahldialog wird in WinRAR verwendet, unter
+      anderem beim Klick auf die Schaltfläche "Suchen..." im Dialog
+      "Einstellungen - Verzeichnisse", bei den Befehlen "Reparieren"
+      und "Konvertieren" sowie an einigen weiteren ähnlichen Stellen.
+      Bisher wurde ein einfacherer Ordnerauswahldialog im
+      Windows-XP-Stil geöffnet.
+
+  20. Wird das WinRAR nach Abschluss einer Operation aus der Taskleiste
+      wiederhergestellt, wird das WinRAR-Fenster unter allen anderen
+      geöffneten Fenstern angeordnet, damit der aktuelle Benutzer bei
+      seiner Arbeit nicht gestört wird.
+
+  21. Im Dialog "Volumengrößen festlegen", der aus dem Dialog
+      "Einstellungen - Komprimierung" heraus aufgerufen wird, wurde der
+      Eintrag "650 MB CD" aus der Liste der voreingestellten
+      Volumengrößen entfernt und der Eintrag "2 GB" zur Liste
+      hinzugefügt.
+
+  22. Beim Befehl "Umbenennen" wird nur der Teil des Dateinamens bis
+      zum letzten Punkt ausgewählt. Bisher wurde immer der gesamte Name
+      selektiert.
+
+  23. Wird während des Komprimierens ein SFX-Archiv größer als 4 GB,
+      wird nun eine Fehlermeldung direkt nach dem Überschreiten dieser
+      Größe angezeigt. Bisher wurde dieser Fehler erst nach Abschluss
+      der Komprimierung gemeldet.
+
+      Windows kann Programmdateien mit einer Größe von mehr als 4 GB
+      nicht ausführen.
+
+  24. Der Kommandozeilenschalter -en wird nicht mehr unterstützt. Damit
+      konnten RAR4-Archive ohne "Archivende"-Block erstellt werden.
+
+      Der "Archivende"-Block macht es möglich, andere Daten am Ende
+      eines Archivs, wie z.B. digitale Signaturen, problemlos zu
+      überspringen.
+
+  25. Behobene Fehler:
+
+      a) War die Option "Selbstentpackendes Archiv erstellen" im
+         Standardkomprimierungsprofil aktiviert, erstellte WinRAR nach
+         dem Bearbeiten einer Datei in einem RAR- oder ZIP-Archiv ein
+         neues SFX-Archiv, anstatt das vorhandene Archiv zu erneuern.
+
+      b) Wurden die Schalter -oi, -f, -u oder die entsprechenden
+         Optionen in der Benutzeroberfläche verwendet, konnte es
+         passieren, dass der Gesamtfortschritt falsch angezeigt wurde.
+
+      c) Beim Befehl "Dateien suchen" mit der Option "Alle Zeichensätze
+         verwenden" und beim Befehl "it" auf der Befehlszeile wurden
+         Zeichenketten mit UTF-16-Kodierung nicht gefunden.
+
+
+   Version 6.02
+
+   1. Das ZIP-SFX-Modul verarbeitet SFX-Befehle in einem Archivkommentar
+      nicht, wenn der Kommentar sich nach dem Beginn der digitalen
+      Authenticode-Signatur befindet. Diese Änderung des Verhaltens
+      verhindert mögliche Angriffe, bei denen ein ZIP-Archiv im Body der
+      Signatur eingebettet ist.
+
+      In WinRAR 6.01 wurde bereits das Entpacken solcher Archive
+      unterbunden.
+
+      Wir danken Jacob Thompson von Mandiant Advantage Labs für die
+      Meldung dieses Problems.
+
+   2. WinRAR verwendet https anstelle von http im Web-Benachrichtigungs-
+      fenster, bei Homepage- und Themen-Links. Außerdem sind zusätzliche
+      Sicherheits-Prüfungen im Web-Benachrichtigungsmodul implementiert.
+      Damit soll verhindert werden, dass eine bösartige Webseite
+      vorhandene Dateien auf dem Computer eines Benutzers ausführt.
+      So ein Angriff ist nur möglich, wenn es einem Eindringling
+      gelungen ist, die DNS-Einträge des Benutzers zu fälschen
+      (Spoofing) oder auf eine andere Art zu kontrollieren. Es gibt
+      weitere Faktoren, welche die praktische Anwendung dieses Angriffs
+      erschweren.
+
+      Wir möchten Igor Sak-Sakovskiy unseren Dank aussprechen, der uns
+      auf dieses Problem aufmerksam gemacht hat.
+
+   3. Ein SFX-Archiv zeigt eine zusätzliche Zeile mit detaillierten
+      Fehlerinformationen an, sofern sie vom Betriebssystem bereitgestellt
+      werden.
+
+      Früher zeigte ein SFX-Archiv beispielsweise nur die Meldung "Kann
+      Datei nicht erstellen." an. Jetzt wird zusätzlich zu dieser Meldung
+      der Grund dafür angezeigt, z.B. "Zugriff verweigert" oder "Die Datei
+      wird von einem anderen Prozess verwendet.".
+
+      In der Vergangenheit waren diese erweiterte Fehlerinformationen
+      nur in WinRAR verfügbar, nicht aber in SFX-Archiven.
+
+   4. Der Schalter -idn unterdrückt die Ausgabe der Namen von archivierten
+      Dateien und Ordner nun auch bei den Befehlen 'v' und 'l'.
+      Das kann nützlich sein, wenn nur die Information über den Archivtyp
+      oder nur die Gesamtinformation benötigt wird.
+
+   5. Werden die Schalter -ibck -ri<Priorität> zusammen verwendet, setzt
+      der WinRAR-Prozess nun die Priorität so, wie sie beim Schalter -ri
+      angegeben ist. Frühere Versionen ignorierten den Schalter -ri
+      und setzen die Priorität auf niedrig, wenn der Schalters -ibck
+      vorhanden war.
+
+   6. Wenn man den Befehl "Datei/Laufwerk wechseln" verwendet, speichert
+      WinRAR das zuletzt verwendete Verzeichnis des vorherigen Laufwerks
+      und stellt es wieder her, wenn man das Laufwerk später erneut
+      ausgewählt.
+
+   7. Bei RAR5-Archiven ist nun der Name der zu entpackenden Datei in der
+      Warnmeldung über ein falsches Passwort enthalten. Diese Information
+      kann insbesondere beim Entpacken eines nicht-soliden Archivs
+      nützlich sein, wenn im Archiv Dateien enthalten sind, die mit
+      unterschiedlichen Passwörtern verschlüsselt sind.
+
+   8. Behobene Fehler:
+
+      a) Beim Befehl "Archive konvertieren" wurde fälschlicherweise die
+         Meldung "Das angegebene Passwort ist falsch." ausgegeben, wenn
+         ein RAR-Archiv mit verschlüsselten Dateinamen erfolgreich
+         konvertiert wurde, anschließend ein neues Passwort gesetzt und
+         dann das Archiv in der WinRAR-Oberfläche geöffnet wurde.
+
+      b) Wenn das Fenster für den Bearbeitungsfortschritt vergrößert und
+         dann schnell zur ursprünglichen Größe verkleinert wurde, konnte
+         es passieren, dass der Inhalt des Fensters falsch positioniert
+         wurde.
+
+
+   Version 6.01
+
+   1. Der Tastaturkürzel Strg+A wählt den gesamten Text im Kommentar-
+      fenster von WinRAR aus.
+   
+   2. Wird der Schalter -idn zusammen mit dem Schalter -t oder -df
+      beim Archivieren bei der Konsolenversion von RAR verwendet, werden
+      alle Meldungen wie "Lösche <Dateiname>" oder "Teste <Dateiname>"
+      unterdrückt, die normalerweise bei diesen Schaltern ausgegeben
+      werden.
+
+      Der Schalter -idn unterdrückt nun auch alle Meldungen für das
+      Erstellen von Verzeichnissen beim Entpacken einer Datei
+      in ein nicht vorhandenes Verzeichnis.
+
+   3. WinRAR und das ZIP-SFX-Modul entpacken den Inhalt von ZIP-SFX-
+      Archiven nicht, wenn das zentrale Verzeichnis der ZIP-Datei sich
+      nach dem Beginn der digitalen Authenticode-Signatur befindet.
+      Diese Änderung des Verhaltens beim Entpacken verhindert mögliche
+      Angriffe, bei denen ein ZIP-Archiv im Body der Signatur
+      eingebettet ist.
+
+   4. Behobene Fehler:
+
+      a) Beim Befehl "Archive konvertieren" konnte es passieren, dass
+         Unicode-Kommentare in RAR-Archiven nicht korrekt konvertiert
+         wurden.
+
+      b) Wurden zwei Archivinformations-Fenster aus dem Kontextmenü des
+         Windows-Explorers geöffnet, konnte es passieren, dass der Balken
+         für die Komprimierungsrate im ersten Fenster fälschlicherweise
+         den Wert des zweiten Archivs anzeigte.
+
+         Der Fehler betraf nicht die Komprimierungsrate und andere
+         auf der rechten Seite des Fensters angezeigten Werte. Nur
+         der vertikale Balken auf der linken Seite konnte auf einen
+         falschen Wert gesetzt werden.
+
+      c) War die Option "Warten, falls andere WinRAR-Kopien aktiv sind"
+         im Dialog "Entpacken: Zielverzeichnis und Optionen" aktiviert,
+         wurde während des Wartens auf eine andere WinRAR-Kopie im
+         Titel des Fortschrittsfensters bei der Ausführung eines
+         Befehls nicht "Warte auf eine andere WinRAR-Kopie" angezeigt.
+
+      d) In vorherigen Versionen von WinRAR wurden beim Entpacken von
+         symbolischen Links bereits vorhandene symbolische Links selbst
+         dann nicht überschrieben, wenn der Anwender das im Dialog
+         "Ersetzen von Dateien bestätigen" so angab.
+
+
+   Version 6.00
+
+   1. In der Eingabeaufforderung bei Lesefehlern wurden die Optionen
+      "Ignorieren" und "Alle ignorieren" hinzugefügt. "Ignorieren" setzt die
+      Verarbeitung mit dem bereits gelesenen Dateiteil fort und "Alle
+      ignorieren" tut dies für alle zukünftig auftretenden Lesefehler.
+
+      Wenn Sie beispielsweise eine Datei archivieren, bei der ein Teil durch
+      einen anderen Prozess gesperrt ist, und dann "Ignorieren" in der
+      Lesefehler-Eingabeaufforderung auswählen, wird der Teil der Datei vor
+      dem unlesbaren Bereich im Archiv gespeichert.
+
+      Das kann dazu beitragen, Unterbrechungen bei längeren Archivierungs-
+      vorgängen zu vermeiden. Beachten Sie jedoch, dass Dateien, die mit
+      der Option "Ignorieren" archiviert wurden, unvollständig sind.
+
+      Wird der Schalter -y angegeben, wird die Option "Ignorieren"
+      standardmäßig auf alle Dateien angewendet.
+
+      Die zuvor verfügbaren Optionen "Wiederholen" und "Beenden" sind immer
+      noch in der Lesefehler-Eingabeaufforderung vorhanden.
+
+   2. Bei Lesefehlern wird im Befehlszeilenmodus der Exit-Code 12
+      zurückgegeben. Dieser Code wird bei Auswahl jeder Option in der
+      Lesefehler- Eingabeaufforderung zurückgegeben, auch bei der neu
+      eingeführten Option "Ignorieren".
+
+      In älteren Versionen wurde bei Lesefehlern der wesentlich allgemeinere
+      schwerwiegende Fehlercode 2 zurückgegeben.
+
+   3. Wenn mehrere Archive ausgewählt sind, kann die Optionengruppe "Entpacke
+      Archive nach" im Dialog "Entpacken: Zielverzeichnis und Optionen -
+      Optionen" verwendet werden, um entpackte Dateien in ein bestimmtes
+      Zielverzeichnis, in eigene Unterverzeichnisse im Zielverzeichnis,
+      in eigene Unterverzeichnisse in den Archivverzeichnissen oder direkt
+      in die Archivverzeichnisse zu platzieren.
+
+      Die Optionengruppe ersetzt die Option "Archive in Unterverzeichnisse
+      entpacken" und ist nur verfügbar, wenn mehrere Archive ausgewählt sind.
+
+   4. Der neue Schalter -ad2 entpackt Dateien direkt in das Verzeichnis, in
+      dem sich das Archiv befindet. Im Gegensatz zum Schalter -ad1 wird nicht
+      für jedes entpackte Archiv ein eigenes Unterverzeichnis erstellt.
+
+   5. Die Option "Weitere Schalter" in den Dialogen "Archivname und
+      Archivparameter einstellen - Optionen" und "Entpacken: Zielverzeichnis
+      und Optionen - Optionen" erlaubt die Angabe weiterer Schalter der
+      WinRAR-Befehlszeile beim Archivieren und Entpacken. Das kann
+      möglicherweise nützlich sein, wenn es in der grafischen Benutzer-
+      oberfläche von WinRAR keine Option gibt, die zu einem Schalter passt.
+
+      Verwenden Sie diese Funktion nur dann, wenn Sie mit der WinRAR-
+      Befehlszeilensyntax vertraut sind und wirklich verstehen, wofür die
+      angegebenen Schalter gedacht sind.
+
+   6. Die Komprimierungsparameter beim Befehl "Benchmark" wurden geändert:
+      Es wird nun ein 32MB großes Wörterbuch und die Kompimierungsmethode
+      "Normal" verwendet. Das entspricht dem RAR5-Standardmodus und ist besser
+      geeignet, die typische Leistung neuerer WinRAR-Versionen abzuschätzen,
+      als mit den vorher verwendeten Komprimierungsparametern 4 MB und
+      "Beste", die für das RAR4-Format gedacht waren.
+
+      Die "Benchmark"-Ergebnisse der neueren WinRAR-Versionen können nicht
+      direkt mit früheren Versionen verglichen werden. Die neuen
+      Komprimierungsparameter ergeben andere Werte, die wegen des achtmal
+      größeren Wörterbuchs wahrscheinlich niedriger ausfallen als vorher.
+
+   7. Soll nur ein Teil der Dateien aus einem soliden gesplitteten Archiv
+      entpackt werden, versucht WinRAR, Volumen am Anfang zu überspringen
+      und das Entpacken von dem Volumen an zu starten, das der angegebenen
+      Datei am nächsten liegt und das die solide Statistik zurücksetzt.
+
+      Standardmäßig setzt WinRAR die soliden Statistiken am Anfang von
+      ausreichend großen soliden Volumen zurück, wo dies möglich ist. Für
+      solche Volumen aus der Mitte des gesplitteten Archivs kann das Entpacken
+      eines Teils der dort archivierten Dateien jetzt schneller sein.
+
+      Diese Änderung hat keine Auswirkungen auf die Geschwindigkeit beim
+      Entpacken aller Dateien aus einem gesplitteten Archiv.
+
+   8. Startete man das Entpacken eines gesplitteten Archivs nicht beim ersten
+      Volumen, überprüfte WinRAR nur, ob das ersten Volumen existierte,
+      und startete dann den Entpackvorgang beim ersten Volumen. Nun überprüft
+      WinRAR bereits vor dem Entpacken von gesplitteten Archiven, ob alle
+      Volumen zwischen dem ersten und dem angegebenen Volumen verfügbar sind.
+
+   9. Eine Warnung wird beim Schließen von WinRAR angezeigt, wenn eine oder
+      mehrere archivierte Dateien durch externe Anwendungen geändert wurden,
+      aber nicht zurück ins Archiv gespeichert werden konnten, weil eine
+      externe Anwendung diese Dateien immer noch sperrt. Eine solche Warnung
+      enthält die Liste der geänderten Dateien und es wird vorgeschlagen,
+      WinRAR sofort zu beenden und alle Änderungen zu verlieren oder zu
+      WinRAR zurückzukehren, um die externe Editor-Anwendung zu schließen.
+
+      Ältere Versionen zeigten beim Bearbeiten einer Datei eine ähnliche
+      Warnung an, beim Beenden wurde jedoch nicht erneut gewarnt.
+
+  10. Die Option "In den Papierkorb verschieben" der Optionsgruppe "Archive
+      löschen" im Dialog "Entpacken: Zielverzeichnis und Optionen - Erweitert"
+      verschiebt gelöschte Archive in den Papierkorb, anstatt sie endgültig
+      zu löschen.
+
+  11. Der neue Befehl "Verlauf löschen..." im Menü "Optionen" erlaubt es,
+      die Namen der zuletzt geöffneten Archive im Menü "Datei" zu entfernen
+      und die Dropdown-Listen mit den zuvor in den Dialogen eingegebenen
+      Werten zu löschen. Zu diesen Werten gehören beispielsweise die
+      Archivnamen im Dialog "Archivname und Archivparameter einstellen"
+      und die Zielverzeichnispfade im Dialog "Entpacken: Zielverzeichnis
+      und Optionen".
+
+  12. Die "Dateizeiten"-Optionen im Dialog "Entpacken: Zielverzeichnis
+      und Optionen - Erweitert" sind jetzt auch für 7z-Archive verfügbar.
+      Zusätzlich zur Änderungszeit kann WinRAR beim Entpacken solcher
+      Archive die Erstellzeit und letzte Zugriffszeit setzen.
+
+  13. Die Optionengruppe "Einträge im Kontextmenü "Neu"" wurde zum Dialog
+      "Kontextmenüeinträge" unter "Einstellungen/Integration/Kontextmenü
+      konfigurieren..." hinzugefügt. Man diese Optionen verwenden, um die
+      Einträge "WinRAR-Archiv" und "WinRAR-ZIP-Archiv" im Untermenü "Neu"
+      des Windows-Explorer-Kontextmenüs zu entfernen.
+
+      Der geänderte Zustand dieser Optionen wird erst nach dem Klick auf
+      die Schaltfläche "OK" sowohl im Dialog "Kontextmenüeinträge" als
+      auch im übergeordneten Dialog "Einstellungen" übernommen.
+
+  14. Die Befehle <Max>, <Min> und <Hide> können vor dem Programmnamen beim
+      SFX-Befehl "Setup" eingefügt werden, um ein Programm in maximiertem,
+      minimiertem oder verstecktem Fenster auszuführen. Beispiel:
+
+      Setup=<Hide>setup.exe
+
+  15. Es ist möglich, ein zusätzliches hochauflösendes Logo für das
+      SFX-Modul anzugeben. Ist so ein Logo vorhanden, skaliert das
+      SFX-Modul das Bild und zeigt es bei hohem DPI-Wert in Windows an.
+      Die sichtbare Qualität des SFX-Logos ist dann besser als bei der
+      Skalierung des Standard-Logos.
+
+      Um ein solches Logo zu definieren, verwenden Sie "Hochauflösendes
+      SFX-Logo" im Dialog "Erweiterte SFX-Optionen". Im Befehlszeilenmodus
+      fügen Sie einen zweiten Schalter -iimg hinzu, um das hochauflösende
+      Logo festzulegen.
+
+      Die empfohlene Größe dieser hochauflösenden Logo-PNG-Datei
+      beträgt 186x604 Pixel.
+
+  16. Wenn das derzeit in der WinRAR-Benutzeroberfläche geöffnetes Archiv
+      von einem anderen Programm gelöscht oder verschoben wurde, zeigt
+      WinRAR im Titel des Fensters "Nicht zugreifbar" vor dem Archivnamen an.
+      Außerdem blinken dann der Fenstertitel und die Schaltfläche in der
+      Windows-Taskleiste.
+
+  17. Die Option "Gesamtinformationen" im Dialog "Bericht erstellen" wurde
+      in "Überschriften und Gesamtinformationen" umbenannt. Mit dieser
+      Option werden nun auch die Überschriften zu den Berichtsspalten
+      zusätzlich zu den Gesamtinformationen über die aufgelisteten Dateien
+      und Archive angezeigt.
+
+  18. Wird die Archivverarbeitung über das Windows-Kontextmenü gestartet
+      und sind mehrere Monitore vorhanden, verwendet WinRAR den Monitor
+      mit dem Kontextmenü für den Fortschrittsdialog und für die
+      vorgangsspezifischen Dialoge.
+
+      In vorherigen Versionen war in der Windows-Explorer-Erweiterung eine
+      grundlegende Unterstützung für mehrere Monitore nur für mausgesteuerte
+      Befehle vorhanden. Mehrere Monitore werden nun auch für Operationen
+      unterstützt, die über die Tastatur gestartet werden, und für das
+      Ablegen von Dateien auf Archive.
+
+  19. Der neue Schalter -imon<Nummer> ermöglicht im Befehlszeilenmodus die
+      Auswahl eines Monitors zur Anzeige der WinRAR-Fortschrittsanzeige und
+      der vorgangsspezifischen Dialoge.
+
+      -imon1 wählt den primären und -imon2 den sekundären Monitor aus. Der
+      Befehl "WinRAR x -imon2 arcname" startet beispielsweise das Entpacken
+      auf dem sekundären Monitor.
+
+      Dieser Schalter funktioniert nur im Befehlszeilenmodus von WinRAR und
+      wirkt sich weder auf die interaktive grafische Benutzeroberfläche von
+      WinRAR noch auf die Konsolenversion von RAR aus.
+
+  20. Der Schalter -idn unterdrückt in der Konsolenversion von RAR die
+      Ausgabe der Namen der archivierten Dateien und Ordner beim Archivieren,
+      Entpacken und einigen weiteren Befehlen. Der Schalter unterdrückt
+      keine weiteren Meldungen und auch nicht die Prozentanzeige für den
+      Gesamtfortschritt.
+
+      Sie können diesen Schalter verwenden, um das visuelle Durcheinander
+      und die Menge der auszugebenden Informationen in der Konsolenausgabe
+      zu reduzieren, insbesondere wenn Sie viele kleine Dateien archivieren
+      oder entpacken.
+
+      Kleinere visuelle Artefakte, wie beispielsweise das Überschreiben
+      einiger der letzten Zeichen von Fehlermeldungen durch die Prozent-
+      anzeige, können bei Verwendung des Schalters -idn auftreten.
+
+  21. Der vorherige Schalter "-im - Mehr Informationen anzeigen" wurde zu
+      "-idv - Ausführliche Informationen anzeigen" geändert, um die
+      Konsistenz mit dem Schaltern -id[c,d,p,q] zur Steuerung der Anzeige
+      von Meldungen in der Konsolenversion von RAR herzustellen und einen
+      potenziellen Namenskonflikt mit dem neu eingeführten Schalter -imon
+      zu vermeiden.
+
+      In der Befehlszeile von WinRAR kann derzeit noch sowohl der alte
+      Schalter -im als auch der neue Schalter -idv verwendet werden.
+      Die Unterstützung für den alten Schalter -im kann in der Zukunft
+      jedoch jederzeit wegfallen.
+
+  22. Im Namen von Komprimierungsprofilen kann die optionale Variable
+      %arcname% verwendet werden. Diese Variable wird durch den aktuellen
+      Archivnamen ersetzt. Das kann praktisch sein, wenn die Option "Zum
+      Kontextmenü hinzufügen" verwendet wird. Zum Beispiel kann man ein
+      ZIP-Kompimierungsprofil erstellen und den Profilnamen "Zu %arcname%
+      hinzufügen" verwenden. Dann wird das Komprimierungsprofil mit dem
+      aktuellen ZIP-Archivnamen im Kontextmenü angezeigt.
+
+  23. Die Tastaturkürzel Strg+C und Strg+Ins können im Fenster
+      "WinRAR: Fehlermeldungen" verwendet werden, um den Inhalt in die
+      Zwischenablage zu kopieren.
+
+  24. Im Hinweis eines Icons im Infobereich der Windows-Taskleiste ist
+      mehr Text erlaubt, bevor ein längerer Text abgeschnitten wird. Ein
+      solcher Text wird nun in der Mitte der Zeichenfolge gekürzt, sodass
+      sowohl der Typ des Befehls als auch die Anzeige des Fortschritts in
+      Prozent weiterhin sichtbar sind.
+
+  25. Wird WinRAR neu installiert und sind keine Komprimierungsprofile der
+      vorherigen Version vorhanden, wird das Feld "Dateien ohne
+      Komprimierung speichern" in den neu erstellten vordefinierten
+      Komprimierungsprofilen auf den folgenden Wert gesetzt:
+
+        *.rar *.zip *.cab *.7z *.ace *.arj *.bz2 *.gz *.lha *.lzh
+        *.taz *.tgz *.xz *.txz
+
+      Man kann dieses Feld später ändern und den geänderten Wert im
+      Komprimierungsprofil speichern.
+
+      Bei vorherigen Versionen wurde das Feld bei einer Neuinstallation
+      leer gelassen.
+
+  26. Im Verlauf des Zielverzeichnispfades im Dialog "Entpacken:
+      Zielverzeichnis und Optionen" werden Pfade wie 'Verzeichnispfad' und
+      'Verzeichnispfad\' nun als gleich angesehen und es wird nur noch der
+      Eintrag 'Verzeichnispfad' angezeigt. Vorher wurden beide
+      Verzeichnispfadeinträge im Verlauf angezeigt.
+
+  27. Die Option "Itanium-Programmcode-Komprimierung anschalten" in der
+      Benutzeroberfläche und der Schalter -mci für die Befehlszeile wurden
+      entfernt. Der spezialisierte Komprimierungsalgorithmus für die
+      Komprimierung von ausführbaren Itanium-Dateien wird nicht mehr
+      unterstützt. Bereits vorhandene Archive, die Itanium-Programmcode-
+      Komprimierung verwenden, kann WinRAR immer noch entpacken.
+
+  28. Behobene Fehler:
+
+      a) Die Befehle "Archiv abschließen", "Archivkommentar hinzufügen"
+         und Archiv vor Zerstörung schützen" konnten nicht auf mehrere in
+         der WinRAR-Dateiliste ausgewählte Archive gleichzeitig angewendet
+         werden.
+
+      b) Der SFX-Archivprozess wurde unter Windows 10 nach dem Entpacken
+         nicht beendet, wenn der Archivkommentar die Befehle "Setup" und
+         "SetupCode" enthielt, den Befehl "TempMode" nicht enthielt und
+         das Setup-Programm länger als 8 Minuten lief.
+
+      c) Komprimierungsprofile mit Anführungszeichen im Profilnamen konnten
+         nicht über das Windows-Explorer-Kontextmenü aufgerufen werden.

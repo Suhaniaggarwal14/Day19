@@ -1,0 +1,39 @@
+7zxa.dll             7z Dekomprimierungs-Bibliothek
+Default.SFX          64-Bit-RAR-SFX-Modul mit GUI für Windows
+Default32.SFX        32-Bit-RAR-SFX-Modul mit GUI für Windows
+Descript.ion         Dateibeschreibungen (Diese Datei)
+License.txt          Lizenz für die Benutzung und Verbreitung
+Order.htm            Informationen zur Registrierung
+Rar.exe              Konsolenversion von RAR
+Rar.lng              Sprachdatei für RAR und UNRAR
+Rar.txt              Handbuch für die Konsolenversion von RAR
+RarLng.dll           Sprach-Ressourcen für RAR
+RarExt.dll           Explorererweiterung von WinRAR
+RarExt32.dll         Explorererweiterung von WinRAR für Windows x86
+RarExt64.dll         Explorererweiterung von WinRAR für Windows x64
+RarExtInstaller.exe  Tool für die Installation und Deinstallation der Explorererweiterung von WinRAR
+RarExtLogo.altform-unplated_targetsize-32.png Grafikdatei für die Explorererweiterung von WinRAR
+RarExtLogo.altform-unplated_targetsize-48.png Grafikdatei für die Explorererweiterung von WinRAR
+RarExtLogo.altform-unplated_targetsize-64.png Grafikdatei für die Explorererweiterung von WinRAR
+RarExtLogo_Default.altform-unplated_targetsize-32.png Grafikdatei für die Explorererweiterung von WinRAR
+RarExtLogo_Default.altform-unplated_targetsize-48.png Grafikdatei für die Explorererweiterung von WinRAR
+RarExtLogo_Default.altform-unplated_targetsize-64.png Grafikdatei für die Explorererweiterung von WinRAR
+RarExtPackage.msix   Unterstützungspaket für die Explorererweiterung von WinRAR
+Rarext.lng           Sprachdatei für Explorererweiterung von WinRAR
+RarFiles.lst         Sortierreihenfolge für solide Archive
+RarNew.dat           Vorlage für neues RAR-Archiv
+ReadMe.txt           Kurzer Überblick über WinRAR
+Resources.pri        Unterstützungsdatei für die Explorererweiterung von WinRAR
+Uninstall.exe        Deinstallationsprogramm
+Uninstall.lng        Sprachdatei für das (De)installationsprogramm
+Uninstall.lst        Dateiliste für die Deinstallation
+UnRAR.exe            Freeware-Tool, um RAR-Archive zu entpacken
+WhatsNew.txt         Was ist neu in dieser Version?
+WinCon.SFX           64-Bit-RAR-SFX-Modul für die Windows-Konsole
+WinCon32.SFX         32-Bit RAR-SFX-Modul für die Windows-Konsole
+WinRAR.chm           WinRAR-Hilfedatei
+WinRAR.exe           WinRAR-Programmdatei
+Winrar.lng           Sprachdatei für WinRAR
+Zip.SFX              64-Bit-ZIP-SFX-Modul mit GUI für Windows
+Zip32.SFX            32-Bit-ZIP-SFX-Modul mit GUI für Windows
+ZipNew.dat           Vorlage für neues ZIP-Archiv
